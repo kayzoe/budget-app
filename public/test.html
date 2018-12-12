@@ -1,0 +1,42 @@
+<div
+  class="collection"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection_page"
+  data-collection--tags-exist="{{ collection_tags_exist }}"
+  data-collection--is-vendor-page="{{ is_vendor_page }}"
+  data-js-class="CollectionPage"
+>
+
+  <header class="collection--header">
+    <div class="collection--title"><h3 class="collection-listing--collection-title" title="{{ number_of_items }}">
+        <a href="{{ collection.url }}">{{ collection.title }}
+          <span class="collection-listing--number-of-items">{{ number_of_items }}</span>
+        </a>
+      </h3>
+      {% if collection.products_count > 6 %}
+        <a class="collection-listing--view-more" href="{{ collection.url }}">
+          {{ 'collections.view_more' | t }}
+        </a>
+      {% endif %}
+<!--     <div class="collection-listing--left-column">
+      
+    </div> -->
+
+     <div class="collection--right-column">
+      <div class="collection--products">
+
+      {% for product in collection.products limit: 6 %}
+        <div class="collection-listing--product">
+          {% include 'partial--product', view: 'list' %}
+        </div>
+      {% endfor %}
+
+      {% if collection.products_count > 6 %}
+        <div class="collection-listing--view-more--mq-small">
+          <a href="{{ collection.url }}">{{ 'collections.view_more' | t }}</a>
+        </div>
+      {% endif %}
+       </div>
+    </div>
+  </div>
+{% endfor %}
